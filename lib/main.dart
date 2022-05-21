@@ -39,19 +39,63 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const <Widget>[
+        children: <Widget>[
           SizedBox(
             child: Card(
               elevation: 5,
               child: Text(
                 'Gráfico',
+                textAlign: TextAlign.center,
               ),
             ),
           ),
-          Card(
-            elevation: 5,
-            child: Text('Lista de transações'),
-          ),
+          Column(
+              children: _transactions
+                  .map(
+                    (tr) => Card(
+                      elevation: 5,
+                      child: Row(children: [
+                        Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              border: Border.all(
+                                color: Colors.purple,
+                                width: 2,
+                              ),
+                            ),
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              'R\$ ${tr.value.toStringAsFixed(2)}',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.purple),
+                            )),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              tr.title,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              '${tr.date.day}/0${tr.date.month}/${tr.date.year}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                          ],
+                        )
+                      ]),
+                    ),
+                  )
+                  .toList()),
         ],
       ),
     );
