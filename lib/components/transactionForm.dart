@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class TransactionForm extends StatelessWidget {
   var titulocontroller = TextEditingController();
   var valorcontroller = TextEditingController();
-  NewTransaction(
+  TransactionForm(
       {Key? key, required this.titulocontroller, required this.valorcontroller})
       : super(key: key);
 
