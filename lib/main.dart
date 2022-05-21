@@ -33,12 +33,13 @@ class MyHomePage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    var tituloController = TextEditingController();
+    var valorController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: Text('Despesas Pessoais'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           SizedBox(
@@ -97,6 +98,43 @@ class MyHomePage extends StatelessWidget {
                     ),
                   )
                   .toList()),
+          Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: tituloController,
+                    decoration: InputDecoration(
+                      labelText: 'Título',
+                    ),
+                  ),
+                  TextField(
+                    controller: valorController,
+                    decoration: InputDecoration(
+                      labelText: 'Valor (R\$)',
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          print(tituloController.text);
+                          print(valorController.text);
+                        },
+                        child: Text(
+                          'Nova Transação',
+                          style: TextStyle(color: Colors.purple),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
