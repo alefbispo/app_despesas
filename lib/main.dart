@@ -1,5 +1,6 @@
 import 'package:app_despesas/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 main() {
   runApp(ExpensesaApp());
@@ -85,7 +86,7 @@ class MyHomePage extends StatelessWidget {
                             ),
                             SizedBox(height: 5),
                             Text(
-                              '${tr.date.day}/0${tr.date.month}/${tr.date.year}',
+                              DateFormat('dd/MM/yyy').format(tr.date),
                               style: TextStyle(
                                 fontWeight: FontWeight.w100,
                               ),
