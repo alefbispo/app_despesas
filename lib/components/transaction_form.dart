@@ -2,13 +2,26 @@ import 'package:flutter/material.dart';
 
 class TransactionForm extends StatelessWidget {
   Function(String, double) onSubmit;
+  var titulocontroller = TextEditingController();
+  var valorcontroller = TextEditingController();
 
   TransactionForm({Key? key, required this.onSubmit}) : super(key: key);
 
+  _submitForm() {
+    final title = titulocontroller.text;
+    final value = double.tryParse(valorcontroller.text) ?? 0.0;
+
+    if (title.isEmpty || value <= 0) {
+      return;
+    }
+    onSubmit(title, value);
+    titulocontroller.clear();
+    valorcontroller.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var titulocontroller = TextEditingController();
-    var valorcontroller = TextEditingController();
+    
     return Card(
       elevation: 5,
       child: Padding(
@@ -17,6 +30,7 @@ class TransactionForm extends StatelessWidget {
           children: [
             TextField(
               controller: titulocontroller,
+              onSubmitted: (_) => _submitForm(),
               decoration: InputDecoration(
                 labelText: 'Título',
               ),
@@ -24,6 +38,7 @@ class TransactionForm extends StatelessWidget {
             TextField(
               controller: valorcontroller,
               keyboardType: TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => _submitForm(),
               decoration: InputDecoration(
                 labelText: 'Valor (R\$)',
               ),
@@ -32,14 +47,7 @@ class TransactionForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () {
-                    final title = titulocontroller.text;
-                    final value = double.tryParse(valorcontroller.text) ?? 0.0;
-
-                    onSubmit(title, value);
-                    titulocontroller.clear();
-                    valorcontroller.clear();
-                  },
+                  onPressed: _submitForm,
                   child: Text(
                     'Nova Transação',
                     style: TextStyle(color: Colors.purple),
