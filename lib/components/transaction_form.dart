@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TransactionForm extends StatelessWidget {
-  var titulocontroller = TextEditingController();
-  var valorcontroller = TextEditingController();
-  TransactionForm(
-      {Key? key, required this.titulocontroller, required this.valorcontroller})
-      : super(key: key);
+  Function(String, double) onSubmit;
+
+  TransactionForm({Key? key, required this.onSubmit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var titulocontroller = TextEditingController();
+    var valorcontroller = TextEditingController();
     return Card(
       elevation: 5,
       child: Padding(
@@ -23,6 +23,7 @@ class TransactionForm extends StatelessWidget {
             ),
             TextField(
               controller: valorcontroller,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(
                 labelText: 'Valor (R\$)',
               ),
@@ -32,8 +33,12 @@ class TransactionForm extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    print(titulocontroller.text);
-                    print(valorcontroller.text);
+                    final title = titulocontroller.text;
+                    final value = double.tryParse(valorcontroller.text) ?? 0.0;
+
+                    onSubmit(title, value);
+                    titulocontroller.clear();
+                    valorcontroller.clear();
                   },
                   child: Text(
                     'Nova Transação',
