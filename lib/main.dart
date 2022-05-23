@@ -1,9 +1,10 @@
-import 'package:app_despesas/models/transaction_form.dart';
+import 'package:app_despesas/components/grafico.dart';
+import 'package:app_despesas/components/transaction_form.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math';
 import 'models/transaction.dart';
-import 'models/transation_list.dart';
+import 'components/transation_list.dart';
 
 main() => runApp(const ExpensesApp());
 
@@ -87,13 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(
-              child: Card(
-                color: Colors.blue,
-                elevation: 5,
-                child: Text('Gráfico'),
-              ),
-            ),
+            Grafico(recentTransaction: _transactions),
             TransactionList(transations: _transactions),
           ],
         ),
