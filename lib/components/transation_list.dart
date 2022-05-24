@@ -17,7 +17,7 @@ class TransactionList extends StatelessWidget {
               children: [
                 Text(
                   'Nenuma transação cadastrada!',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).appBarTheme.titleTextStyle,
                 ),
                 SizedBox(
                   height: 200,
@@ -40,7 +40,7 @@ class TransactionList extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           border: Border.all(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             width: 2,
                           ),
                         ),
@@ -50,7 +50,7 @@ class TransactionList extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
-                              color: Theme.of(context).primaryColor),
+                              color: Theme.of(context).colorScheme.secondary),
                         )),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

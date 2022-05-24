@@ -1,3 +1,4 @@
+import 'package:app_despesas/components/grafico_bar.dart';
 import 'package:app_despesas/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -32,13 +33,20 @@ class Grafico extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     groupedTransactions;
-    return Card(
-        elevation: 6,
-        margin: EdgeInsets.all(20),
-        child: Row(
-          children: groupedTransactions.map(((e) {
-            return Text('${e['day']}: ${e['value']}');
-          })).toList(),
-        ));
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Card(
+          elevation: 6,
+          margin: EdgeInsets.all(20),
+          child: Row(
+            children: groupedTransactions.map(((e) {
+              return GraficoBar(
+                label: e['day'] as String,
+                percentage: 0.3,
+                value: e['value'] as double,
+              );
+            })).toList(),
+          )),
+    );
   }
 }

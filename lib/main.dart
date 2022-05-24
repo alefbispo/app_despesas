@@ -19,7 +19,8 @@ class ExpensesApp extends StatelessWidget {
         fontFamily: GoogleFonts.quicksand().fontFamily,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.purple,
-        ).copyWith(secondary: Colors.amber),
+          accentColor: Color.fromARGB(255, 156, 70, 187),
+        ),
       ),
     );
   }

@@ -56,9 +56,8 @@ class _TransactionFormState extends State<TransactionForm> {
                   onPressed: _submitForm,
                   child: Text(
                     'Nova Transação',
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor
-                    ),
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
                   ),
                 )
               ],
