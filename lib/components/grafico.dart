@@ -30,23 +30,32 @@ class Grafico extends StatelessWidget {
     });
   }
 
+  double get _weekTotoalValue {
+    return groupedTransactions.fold(0.0, (sum, tr) {
+      return sum + (tr['value'] as double);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    groupedTransactions;
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Card(
-          elevation: 6,
-          margin: EdgeInsets.all(20),
+    return Card(
+        elevation: 6,
+        margin: EdgeInsets.all(20),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: groupedTransactions.map(((e) {
-              return GraficoBar(
-                label: e['day'] as String,
-                percentage: 0.3,
-                value: e['value'] as double,
+              return Flexible(
+                fit: FlexFit.tight,
+                child: GraficoBar(
+                  label: e['day'] as String,
+                  value: e['value'] as double,
+                  percentage: (e['value'] as double) / _weekTotoalValue,
+                ),
               );
             })).toList(),
-          )),
-    );
+          ),
+        ));
   }
 }

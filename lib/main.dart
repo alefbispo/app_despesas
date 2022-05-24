@@ -47,13 +47,17 @@ class _MyHomePageState extends State<MyHomePage> {
       value: 211.30,
       date: DateTime.now().subtract(Duration(days: 4)),
     ),
+    Transaction(
+      id: 't3',
+      title: 'Gás',
+      value: 113.00,
+      date: DateTime.now().subtract(Duration(days: 2)),
+    ),
   ];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((element) {
-      return element.date.isAfter(DateTime.now().subtract(
-        Duration(days: 7),
-      ));
+      return element.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList();
   }
 
