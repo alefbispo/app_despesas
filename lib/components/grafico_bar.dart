@@ -23,7 +23,7 @@ class GraficoBar extends StatelessWidget {
         SizedBox(
           height: 60,
           width: 10,
-          child: Stack(
+          child: Stack(  
             alignment: Alignment.bottomCenter,
             children: [
               Container(
