@@ -16,7 +16,9 @@ class GraficoBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FittedBox(child: Text(' ${value.toStringAsFixed(2)}')),
+        SizedBox(
+            height: 20,
+            child: FittedBox(child: Text('R\$\n${value.toStringAsFixed(2)}'))),
         SizedBox(height: 5),
         SizedBox(
           height: 60,

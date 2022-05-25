@@ -1,7 +1,6 @@
 import 'package:app_despesas/components/grafico_bar.dart';
 import 'package:app_despesas/models/transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class Grafico extends StatelessWidget {
   final List<Transaction> recentTransaction;
@@ -17,6 +16,7 @@ class Grafico extends StatelessWidget {
       double totalSum = 0;
       for (int i = 0; i < recentTransaction.length; i++) {
         bool sameDay = recentTransaction[i].date.day == weekDat.day;
+
         bool sameMonth = recentTransaction[i].date.month == weekDat.month;
         bool sameYear = recentTransaction[i].date.year == weekDat.year;
 
@@ -24,10 +24,33 @@ class Grafico extends StatelessWidget {
           totalSum += recentTransaction[i].value;
         }
       }
-      final dayFormated = DateFormat.E().format(weekDat)[0];
 
-      return {'day': dayFormated, 'value': totalSum};
-    });
+      String diaEd = '';
+      switch (weekDat.weekday) {
+        case 1:
+          diaEd = 'Seg';
+          break;
+        case 2:
+          diaEd = 'Ter';
+          break;
+        case 3:
+          diaEd = 'Qua';
+          break;
+        case 4:
+          diaEd = 'Qui';
+          break;
+        case 5:
+          diaEd = 'Sex';
+          break;
+        case 6:
+          diaEd = 'Sab';
+          break;
+        case 7:
+          diaEd = 'Dom';
+          break;
+      }
+      return {'day': diaEd, 'value': totalSum};
+    }).reversed.toList();
   }
 
   double get _weekTotoalValue {
