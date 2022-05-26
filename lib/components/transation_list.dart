@@ -5,13 +5,14 @@ import 'package:intl/intl.dart';
 class TransactionList extends StatelessWidget {
   final List<Transaction> transations;
   final Function(String id) delete;
-  const TransactionList({Key? key, required this.transations, required this.delete})
+  const TransactionList(
+      {Key? key, required this.transations, required this.delete})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 350,
+      height: 400,
       child: transations.isEmpty
           ? Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
