@@ -12,17 +12,25 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 400,
+      height: 600,
       child: transations.isEmpty
           ? Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                SizedBox(
+                  height: 50,
+                ),
                 Text(
                   'Nenuma transação cadastrada!',
-                  style: Theme.of(context).appBarTheme.titleTextStyle,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 SizedBox(
-                  height: 200,
+                  height: 50,
+                ),
+                SizedBox(
+                  height: 300,
                   child: Image.asset(
                     'assets/images/waiting.png',
                   ),
