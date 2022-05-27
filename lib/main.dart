@@ -60,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //   date: DateTime.now().subtract(Duration(days: 1)),
     // ),
   ];
+  bool _showGrafico = false;
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((element) {
@@ -117,14 +118,30 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
-                height: avaliableHeight * 0.3,
-                child: Grafico(recentTransaction: _recentTransactions)),
-            SizedBox(
-              height: avaliableHeight * 0.7,
-              child: TransactionList(
-                  transations: _transactions, delete: _deleteTransaction),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Exibir gráfico'),
+                Switch(
+                  value: _showGrafico,
+                  onChanged: (value) {
+                    setState(() {
+                      _showGrafico = value;
+                    });
+                  },
+                ),
+              ],
             ),
+            if (_showGrafico)
+              SizedBox(
+                  height: avaliableHeight * 0.3,
+                  child: Grafico(recentTransaction: _recentTransactions)),
+            if (!_showGrafico)
+              SizedBox(
+                height: avaliableHeight * 0.8,
+                child: TransactionList(
+                    transations: _transactions, delete: _deleteTransaction),
+              ),
           ],
         ),
       ),
