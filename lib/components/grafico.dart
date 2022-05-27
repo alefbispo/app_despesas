@@ -74,7 +74,9 @@ class Grafico extends StatelessWidget {
                 child: GraficoBar(
                   label: e['day'] as String,
                   value: e['value'] as double,
-                  percentage: _weekTotoalValue == 0 ? 0 : (e['value'] as double) / _weekTotoalValue,
+                  percentage: _weekTotoalValue == 0
+                      ? 0
+                      : (e['value'] as double) / _weekTotoalValue,
                 ),
               );
             })).toList(),
