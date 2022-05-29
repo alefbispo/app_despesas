@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLandscape =
+    bool isLandScape =
         MediaQuery.of(context).orientation == Orientation.landscape;
     final appBar = AppBar(
       title: const Text('Despesas Pessoais'),
@@ -120,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (isLandscape)
+            if (isLandScape)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -135,9 +135,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-            if (_showGrafico || !isLandscape)
+            if (_showGrafico || !isLandScape)
               SizedBox(
-                  height: isLandscape
+                  height: isLandScape
                       ? avaliableHeight * 0.8
                       : avaliableHeight * 0.3,
                   child: Grafico(recentTransaction: _recentTransactions)),
