@@ -20,7 +20,7 @@ class GraficoBar extends StatelessWidget {
         return Column(
           children: [
             SizedBox(
-                height: height * 0.20,
+                height: height * 0.2,
                 child: FittedBox(
                     child: FittedBox(
                         child: Text('R\$\n${value.toStringAsFixed(2)}')))),

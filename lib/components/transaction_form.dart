@@ -70,13 +70,13 @@ class _TransactionFormState extends State<TransactionForm> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.08,
+                  height: height * 0.05,
                   child: Row(
                     children: [
                       Expanded(
                         child: Text(
                           _selectedDate == null
-                              ? 'Nem uma data selecionada!'
+                              ? 'Nenhuma data selecionada!'
                               : 'Data selecionada ${DateFormat('dd/MM/y').format(_selectedDate)}',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),

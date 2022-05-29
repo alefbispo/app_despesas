@@ -21,9 +21,9 @@ class TransactionList extends StatelessWidget {
                     height: height * 0.05,
                   ),
                   SizedBox(
-                    height: height * 0.3,
+                    height: height * 0.1,
                     child: Text(
-                      'Nenuma transação cadastrada!',
+                      'Nenhuma transação cadastrada!',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
