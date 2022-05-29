@@ -48,45 +48,65 @@ class _TransactionFormState extends State<TransactionForm> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final height = constraints.maxHeight;
-        return Card(
-          elevation: 5,
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              children: [
-                TextField(
-                  controller: titleController,
-                  onSubmitted: (_) => _submitForm,
-                  decoration: InputDecoration(
-                    labelText: 'Título',
+        return SingleChildScrollView(
+          child: Card(
+            elevation: 5,
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: titleController,
+                    onSubmitted: (_) => _submitForm,
+                    decoration: InputDecoration(
+                      labelText: 'Título',
+                    ),
                   ),
-                ),
-                TextField(
-                  controller: valueController,
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  onSubmitted: (_) => _submitForm,
-                  decoration: InputDecoration(
-                    labelText: 'Valor (R\$)',
+                  TextField(
+                    controller: valueController,
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    onSubmitted: (_) => _submitForm,
+                    decoration: InputDecoration(
+                      labelText: 'Valor (R\$)',
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: height * 0.05,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          _selectedDate == null
-                              ? 'Nenhuma data selecionada!'
-                              : 'Data selecionada ${DateFormat('dd/MM/y').format(_selectedDate)}',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                  SizedBox(
+                    height: MediaQuery.of(context).orientation ==
+                            Orientation.landscape
+                        ? height * 0.2
+                        : height * 0.1,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            _selectedDate == null
+                                ? 'Nenhuma data selecionada!'
+                                : 'Data selecionada ${DateFormat('dd/MM/y').format(_selectedDate)}',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          _showDatePucker();
-                        },
+                        TextButton(
+                          onPressed: () {
+                            _showDatePucker();
+                          },
+                          child: Text(
+                            'Selecione Data',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: _submitForm,
                         child: Text(
-                          'Selecione Data',
+                          'Nova Transação',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -94,22 +114,8 @@ class _TransactionFormState extends State<TransactionForm> {
                       )
                     ],
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    ElevatedButton(
-                      onPressed: _submitForm,
-                      child: Text(
-                        'Nova Transação',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );
